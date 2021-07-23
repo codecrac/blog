@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\InfosGenerale;
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
     public function index(){
+        $liste_menus_simple = Menu::where('type','=','menu_simple')->get();
         $infos_generales = InfosGenerale::first();
         $liste_utilisateur = User::all();
-        return view('admin.gestion_utilisateur',compact('infos_generales','liste_utilisateur'));
+        return view('admin.gestion_utilisateur',compact('liste_menus_simple','infos_generales','liste_utilisateur'));
     }
 
     public function modifier(Request $request,$id_utilisateur){

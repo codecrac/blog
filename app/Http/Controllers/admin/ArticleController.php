@@ -30,10 +30,12 @@ class ArticleController extends Controller
     }
 
     public function editer_article($id_article){
+        $liste_utilisateur = User::all();
+
         $infos_generales = InfosGenerale::first();
         $liste_menus_simple = Menu::where('type','=','menu_simple')->get();
         $larticle = Article::findorfail($id_article);
-        return view('admin.articles.editer',compact('liste_menus_simple','larticle','infos_generales'));
+        return view('admin.articles.editer',compact('liste_utilisateur','liste_menus_simple','larticle','infos_generales'));
     }
 
     public function enregistrer_article(Request $request,$id_menu)
@@ -41,6 +43,7 @@ class ArticleController extends Controller
         $df = $request->all();
         $article = new Article();
         $article->id_menu = $id_menu;
+        $article->id_auteur = $df['auteur'];
         $article->titre = $df['titre'];
         $article->extrait = $df['extrait'];
         $article->contenu = $df['contenu'];
@@ -72,6 +75,7 @@ class ArticleController extends Controller
         $df = $request->all();
         $article = Article::find($id_article);
         $article->titre = $df['titre'];
+        $article->id_auteur = $df['auteur'];
         $article->extrait = $df['extrait'];
         $article->contenu = $df['contenu'];
 

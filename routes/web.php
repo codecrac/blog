@@ -11,8 +11,10 @@ use App\Http\Controllers\PageAccueilController;
 use App\Http\Controllers\PubliciteController;
 use App\Http\Controllers\UtilisateurController;
 use App\Models\Article;
+use App\Models\Evenement;
 use App\Models\InfosGenerale;
 use App\Models\Menu;
+use App\Models\Publicite;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,11 +43,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $nb_menus_simple = Menu::where('type','=','menu_simple')->get();
     $nb_menus_simples = sizeof($nb_menus_simple);
 
+    $nb_evenement = Evenement::count();
+
+    $nb_publicite = Publicite::count();
+
     $nb_menus_parent = Menu::where('type','=','parent')->get();
     $nb_menus_parent = sizeof($nb_menus_parent);
 
     $nb_article = Article::count();
-    return view('dashboard',compact('liste_menus_simple','nb_menus_simples','nb_menus_parent','nb_article','infos_generales'));
+    return view('dashboard',compact('liste_menus_simple','nb_evenement','nb_publicite','nb_menus_simples','nb_menus_parent','nb_article','infos_generales'));
 })->name('dashboard');
 
 

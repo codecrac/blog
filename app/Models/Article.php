@@ -13,7 +13,6 @@ class Article extends Model
         return $this->belongsTo(Menu::class,'id_menu');
     }
 
-
     public function auteur(){
         return $this->belongsTo(User::class,'id_auteur');
     }

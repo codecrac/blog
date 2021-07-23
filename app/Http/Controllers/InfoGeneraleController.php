@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class InfoGeneraleController extends Controller
 {
     public function index(){
+
         $infos_generales = InfosGenerale::first();
         $liste_menus_simple = Menu::where('type','=','menu_simple');
         return view('admin.infos_generales',compact('liste_menus_simple','infos_generales'));

@@ -26,28 +26,28 @@
 
                     <div class="row grid-margin">
 
-                        <div class="form-group col-12">
+                        <div class="form-group pt-3 col-12">
                             <div class="row">
                                 <h4>Image Illustration</h4>
                                 <input type="file" name="image" class="form-control" required />
                             </div>
                         </div>
 
-                        <div class="form-group col-12 pt-3">
+                        <div class="form-group pt-3 col-12 pt-3">
                             <div class="row">
                                 <h4>Titre</h4>
                                 <input name="titre" class="form-control" required />
                             </div>
                         </div>
 
-                        <div class="form-group col-12 pt-3">
+                        <div class="form-group pt-3 col-12 pt-3">
                             <div class="row">
                                 <h4>Date</h4>
                                 <input name="date_evenement" type="date" class="form-control" required />
                             </div>
                         </div>
 
-                        <div class="form-group col-12 pt-3">
+                        <div class="form-group pt-3 col-12 pt-3">
                             <div class="row">
                                 <h4>Extrait</h4>
                                 <textarea name="extrait" class="form-control" maxlength="250" required></textarea>
@@ -55,7 +55,7 @@
                         </div>
 
 
-                        <div class="form-group col-12 pt-3">
+                        <div class="form-group pt-3 col-12 pt-3">
                             <div class="row">
                                 <h4>Auteur</h4>
                                 <select class="form-control" name="auteur">

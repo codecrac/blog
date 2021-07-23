@@ -30,24 +30,36 @@
 
                     <div class="row grid-margin">
 
-                        <div class="form-group col-12">
+                        <div class="form-group pt-3 col-12">
                             <div class="row">
                                 <h4>Image Illustration <img src="data:image/jpeg;base64,{{$larticle['image']}}" width="100px" height="100px">  </h4>
                                 <input type="file" name="image" class="form-control" />
                             </div>
                         </div>
 
-                        <div class="form-group col-12">
+                        <div class="form-group pt-3 col-12">
                             <div class="row">
                                 <h4>Titre</h4>
                                 <input name="titre" class="form-control" value="{{$larticle['titre']}}" />
                             </div>
                         </div>
 
-                        <div class="form-group col-12">
+                        <div class="form-group pt-3 col-12">
                             <div class="row">
                                 <h4>Extrait</h4>
                                 <textarea name="extrait" class="form-control">{{$larticle['extrait']}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3 col-12 pt-3">
+                            <div class="row">
+                                <h4>Auteur</h4>
+                                <select class="form-control" name="auteur">
+                                    <option value="{{$larticle->auteur->id}}"> {{$larticle->auteur->name}} </option>
+                                    @foreach($liste_utilisateur as $item)
+                                        <option value="{{$item['id']}}"> {{$item['name']}} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
