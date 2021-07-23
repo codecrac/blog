@@ -1,5 +1,5 @@
 
-@extends('admin.includes')
+@extends('admin.includes2')
 
 @section('style_complementaire')
 
@@ -26,7 +26,7 @@
             <div class="offset-md-3 col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="page-title text-center"> Cocher les Section dont les derniers articles apparaitront sur la page d'accueil </h3>
+                        <h3 class="page-title text-center"> Cocher les sections dont les derniers articles apparaitront sur la page d'accueil </h3>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{route('enregistrer_page_accueil')}}">

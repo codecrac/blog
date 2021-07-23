@@ -11,7 +11,7 @@ class Menu extends Model
     public $timestamps = false;
 
     public function articles(){
-        return $this->hasMany(Article::class,'id_menu');
+        return $this->hasMany(Article::class,'id_menu')->orderBy('id','desc');
     }
 
     public function enfants(){

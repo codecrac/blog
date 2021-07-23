@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\InfosGenerale;
 use App\Models\Menu;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -21,10 +22,11 @@ class ArticleController extends Controller
     }
 
     public function ajouter($id_menu){
+        $liste_utilisateur = User::all();
         $infos_generales = InfosGenerale::first();
         $liste_menus_simple = Menu::where('type','=','menu_simple')->get();
         $le_menu = Menu::findorfail($id_menu);
-        return view('admin.articles.ajouter',compact('liste_menus_simple','le_menu','infos_generales'));
+        return view('admin.articles.ajouter',compact('liste_utilisateur','liste_menus_simple','le_menu','infos_generales'));
     }
 
     public function editer_article($id_article){

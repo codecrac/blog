@@ -4,9 +4,12 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\FrontArticleController;
 use App\Http\Controllers\InfoGeneraleController;
 use App\Http\Controllers\PageAccueilController;
+use App\Http\Controllers\PubliciteController;
+use App\Http\Controllers\UtilisateurController;
 use App\Models\Article;
 use App\Models\InfosGenerale;
 use App\Models\Menu;
@@ -48,6 +51,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::prefix('admin')->middleware(['auth:sanctum','verified'])->group(function (){
 
+//=========================gestion utilisateur
+    Route::get('/gestion-utilisateur',[UtilisateurController::class,'index'])->name('gestion_utilisateur');
+    Route::put('/gestion-permissions-utilisateur/{id_utilisateur}',[UtilisateurController::class,'modifier'])->name('modifier_permissions_utilisateur');
+    Route::post('/desactiver-utilisateur/{id_utilisateur}',[UtilisateurController::class,'desactiver_utilisateur'])->name('desactiver_utilisateur');
+
+
 //=========================menu
     Route::get('/gestion-menu',[MenuController::class,'index'])->name('gestion_menus');
     Route::post('/ajouter-menu',[MenuController::class,'ajouter_menu'])->name('ajouter_menu');
@@ -61,6 +70,22 @@ Route::prefix('admin')->middleware(['auth:sanctum','verified'])->group(function 
     Route::get('/editer-article/{id_article}',[ArticleController::class,'editer_article'])->name('editer_article');
     Route::put('/modifier-article/{id_article}',[ArticleController::class,'modifier_article'])->name('modifier_article');
     Route::delete('/supprimer-article/{id_article}',[ArticleController::class,'supprimer_article'])->name('supprimer_article');
+
+//=========================article
+    Route::get('/gestion-evenement',[EvenementController::class,'index'])->name('gestion_evenement');
+    Route::get('/ajouter-evenement',[EvenementController::class,'ajouter'])->name('ajouter_evenement');
+    Route::post('/ajouter-evenement',[EvenementController::class,'enregistrer_evenement'])->name('enregistrer_evenement');
+    Route::get('/editer-evenement/{id_evenement}',[EvenementController::class,'editer_evenement'])->name('editer_evenement');
+    Route::put('/modifier-evenement/{id_evenement}',[EvenementController::class,'modifier_evenement'])->name('modifier_evenement');
+    Route::delete('/supprimer-evenement/{id_evenement}',[EvenementController::class,'supprimer_evenement'])->name('supprimer_evenement');
+
+//=========================publicite
+    Route::get('/gestion-publicite',[PubliciteController::class,'index'])->name('gestion_publicite');
+    Route::get('/ajouter-publicite',[PubliciteController::class,'ajouter'])->name('ajouter_publicite');
+    Route::post('/ajouter-publicite',[PubliciteController::class,'enregistrer_publicite'])->name('enregistrer_publicite');
+    Route::get('/editer-publicite/{id_publicite}',[PubliciteController::class,'editer_publicite'])->name('editer_publicite');
+    Route::put('/modifier-publicite/{id_publicite}',[PubliciteController::class,'modifier_publicite'])->name('modifier_publicite');
+    Route::delete('/supprimer-publicite/{id_publicite}',[PubliciteController::class,'supprimer_publicite'])->name('supprimer_publicite');
 
 //=========================Page accueil
     Route::get('/gestion-page-accueil',[PageAccueilController::class,'index'])->name('gestion_page_accueil');

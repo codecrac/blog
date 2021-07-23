@@ -21,7 +21,7 @@ class AccueilController extends Controller
         }
 
         //au hasard pour la sidebar
-        $quatre_derniers_article = Article::orderby('id','desc')->take(3)->get();
+        $quatre_derniers_article = Article::orderby('id','desc')->skip(1)->take(3)->get();
         $cinq_au_hasard = Article::inRandomOrder()->limit(3)->get();
 //        $recommandations = Article::inRandomOrder()->limit(4)->get();
 

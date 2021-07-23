@@ -27,30 +27,6 @@
     <!--End-->
     </div>--}}
 
-   <div class="inner-banner-header wf100" style="
-       background-image:url('{{asset('images_statique/bg1.jpg')}}');
-       background-position: center;
-       background-size: cover;
-       ">
-       <div class="overlay" style="
-                background-color: rgba(255,69,0,0.3);
-                position: absolute;
-                top:0;
-                left: 0;
-                right: 0;
-                bottom: 0
-                ">
-
-{{--           <div class="gt-breadcrumbs">--}}
-{{--               <ul>--}}
-{{--                   <li></li>--}}
-{{--                   <li> <h1 class="text-uppercase" data-generated="{{$infos_generales['organisation']}}"> {{$infos_generales['organisation']}} </h1> </li>--}}
-{{--                   <li></li>--}}
-{{--               </ul>--}}
-{{--           </div>--}}
-       </div>
-   </div>
-
    <div class="main-content innerpagebg wf100 p80">
        <!--News Large Page Start-->
        <!--Start-->
@@ -63,9 +39,13 @@
                            <div class="news-large-post">
                                <div class="post-thumb">
                                    <img src="data:image/jpeg;base64,{{$larticle['image']}}" alt="">
+
+                                   <h3 style="position: absolute;bottom:0;width:100%;padding:10px;color: #fff;background-color:rgba(0,0,0,0.7)">
+                                       {{$larticle['titre']}} {{$larticle['titre']}}
+                                   </h3>
                                </div>
                                <div class="post-txt">
-                                   <h3>{{$larticle['titre']}}</h3>
+{{--                                   <h3>{{$larticle['titre']}}</h3>--}}
                                    <ul class="post-meta">
                                        <li><i class="fas fa-calendar-alt"></i> {{date('d-m-Y',strtotime($larticle['titre']))}} </li>
                                    </ul>

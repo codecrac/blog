@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('front_template/prettyPhoto.css')}}">
 {{--    <link rel="stylesheet" href="{{asset('front_template/audioplayer.css')}}">--}}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
     <title>{{$infos_generales['organisation']}}</title>
 
     <style>
@@ -90,13 +89,13 @@
                                         @if(sizeof($item_menu_pricipal->enfants) >0)
                                             <li class="nav-item drop-down">
                                                 <a href="#">{{$item_menu_pricipal['titre']}} <b>&triangledown;</b></a>
+                                                <ul>
                                                     @foreach($item_menu_pricipal->enfants as $item_sous_menu)
-                                                        <ul>
-                                                            <li>
-                                                                <a href="{{route('page_article',[$item_sous_menu['id']])}}"> {{$item_sous_menu['titre']}} </a>
-                                                            </li>
-                                                        </ul>
-                                                @endforeach
+                                                                <li>
+                                                                    <a href="{{route('page_article',[$item_sous_menu['id']])}}"> {{$item_sous_menu['titre']}} </a>
+                                                                </li>
+                                                    @endforeach
+                                                </ul>
                                             </li>
                                         @endif
                                     @endif
@@ -112,6 +111,20 @@
 
     </header>
 
+    <div class="inner-banner-header wf100" style="
+        background-image:url('data:image/jpeg;base64,{{$infos_generales['banniere']}}');
+        background-position: center;
+        background-size: cover;
+        ">
+        <div class="overlay" style="
+                background-color: rgba(255,69,0,0.3);
+                position: absolute;
+                top:0;
+                left: 0;
+                right: 0;
+                bottom: 0
+                "></div>
+    </div>
         @yield('body')
 
 <!--Main Footer Start-->

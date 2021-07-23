@@ -17,6 +17,7 @@ class CreateInfosgeneralesTable extends Migration
             $table->id();
             $table->string('organisation');
             $table->longText('logo');
+            $table->longText('banniere');
             $table->string('adresse');
             $table->string('telephones');
             $table->string('email');

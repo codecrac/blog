@@ -27,6 +27,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        'creer_utilisateurs',
+        'evenement',
+        'publicite',
+        'articles',
+
+        'ajouter',
+        'modifier',
+        'effacer    ',
     ];
 
     /**

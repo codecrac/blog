@@ -2,32 +2,7 @@
 
 @section('body')
     <div class="main-content innerpagebg wf100">
-        <!--News Large Page Start-->
 
-        <div class="inner-banner-header wf100" style="
-            background-image:url('{{asset('images_statique/bg1.jpg')}}');
-            background-position: center;
-            background-size: cover;
-            ">
-            <div class="overlay" style="
-                background-color: rgba(255,69,0,0.3);
-                position: absolute;
-                top:0;
-                left: 0;
-                right: 0;
-                bottom: 0
-                ">
-
-{{--                <div class="gt-breadcrumbs">--}}
-{{--                    <ul>--}}
-{{--                        <li></li>--}}
-{{--                        <li> <h1 class="text-uppercase" data-generated="{{$infos_generales['organisation']}}"> {{$infos_generales['organisation']}} </h1> </li>--}}
-{{--                        <li></li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-            </div>
-        </div>
-        <!--Start-->
         <div class="news-large">
             <div class="container">
 

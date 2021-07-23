@@ -12,4 +12,9 @@ class Article extends Model
     public function categorie_parente(){
         return $this->belongsTo(Menu::class,'id_menu');
     }
+
+
+    public function auteur(){
+        return $this->belongsTo(User::class,'id_auteur');
+    }
 }

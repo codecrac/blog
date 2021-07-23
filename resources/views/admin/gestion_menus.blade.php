@@ -1,5 +1,5 @@
 
-@extends('admin.includes')
+@extends('admin.includes2')
 
 @section('style_complementaire')
 
@@ -116,10 +116,10 @@
                                     <td>
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editer-menu-{{$item_menus['id']}}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_menus['id']}}">
                                             Editer
                                         </button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprimer-menu-{{$item_menus['id']}}">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_menus['id']}}">
                                             x
                                         </button>
                                     </td>
@@ -132,7 +132,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -143,7 +143,7 @@
                                                     @method('put')
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary">Modifier</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -161,7 +161,7 @@
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -272,10 +272,10 @@
                                                 <tr>
                                                     <td class="col-6"> {{$item_sous_menu['titre']}} </td>
                                                     <td class="col-6">
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editer-menu-{{$item_sous_menu['id']}}">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_sous_menu['id']}}">
                                                             Editer
                                                         </button>
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprimer-menu-{{$item_sous_menu['id']}}">
+                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_sous_menu['id']}}">
                                                             x
                                                         </button>
                                                     </td>
@@ -283,14 +283,16 @@
                                                 </tbody>
                                             </table>
 
+
+
                                             <!-- Modal EDITER  -->
-                                            <div class="modal fade" id="editer-menu-{{$item_sous_menu['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal fade" id="editer-menu-{{$item_sous_menu['id']}}" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <form method="post" action="{{route('modifier_menu',[$item_sous_menu['id']])}}">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Edition</h5>
+                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -301,7 +303,7 @@
                                                                 @method('put')
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-primary">Modifier</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -319,7 +321,7 @@
                                                                 @method('delete')
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                                             </div>
                                                         </form>
                                                     </div>

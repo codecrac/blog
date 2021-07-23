@@ -23,6 +23,11 @@
                             <input type="file" name="logo" class="form-control">
                             <br/>
 
+                            <h4>Banniere <img src="data:image/jpeg;base64,{{$infos_generales['banniere']}}" height="100px" width="100px" /> </h4>
+                            <span>Choisissez un fichier pour modifier la banniere actuel</span>
+                            <input type="file" name="banniere" class="form-control">
+                            <br/>
+
                             <h4>Adresse</h4>
                             <input type="text"  name="adresse" class="form-control" value="{{$infos_generales['adresse']}}">
 
@@ -35,7 +40,7 @@
 
                             <br/>
                             <h4>A propos</h4>
-                            <textarea name="apropos" maxlength="255" class="form-control">{{$infos_generales['apropos']}}</textarea>
+                            <textarea name="apropos" maxlength="250" class="form-control">{{$infos_generales['apropos']}}</textarea>
                             <br/>
 
                             <br/>

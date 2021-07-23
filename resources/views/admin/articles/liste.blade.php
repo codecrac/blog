@@ -1,4 +1,4 @@
-@extends('admin.includes')
+@extends('admin.includes2')
 
 @section('body')
 

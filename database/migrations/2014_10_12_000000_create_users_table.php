@@ -19,6 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->enum('creer_utilisateurs',['true','false']);
+            $table->enum('evenement',['true','false']);
+            $table->enum('publicite',['true','false']);
+            $table->enum('articles',['true','false']);
+
+            $table->enum('ajouter',['true','false']);
+            $table->enum('modifier',['true','false']);
+            $table->enum('effacer',['true','false']);
+
+            $table->enum('actif',['true','false']);
+
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

@@ -32,6 +32,15 @@ class InfoGeneraleController extends Controller
 //            dd($str_to_store);
             $infosgenerales->logo = $image_base64;
         }
+        //stocker en base64
+        if($request->hasFile('banniere')){
+            $limage = $request->file('banniere');
+            $path = $limage->getRealPath();
+            $image_base64 = base64_encode(file_get_contents($path));
+
+//            dd($str_to_store);
+            $infosgenerales->banniere = $image_base64;
+        }
 
         $infosgenerales->organisation = $df['organisation'];
         $infosgenerales->adresse = $df['adresse'];

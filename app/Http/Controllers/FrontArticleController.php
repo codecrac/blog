@@ -33,6 +33,7 @@ class FrontArticleController extends Controller
         if($la_categorie==null){
             return redirect('/');
         }
+
         return view('page_liste_article',compact('infos_generales','la_categorie','menus_pricipaux'));
     }
 }
