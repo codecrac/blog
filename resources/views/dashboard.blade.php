@@ -131,9 +131,13 @@
                                 <br/>
 
                                 <h4 class="text-center">
+                                    "La reconnaissance du travail bien fais est une récompense bien plus appreciée qu'un salaire."
+                                </h4>
+
+                                {{--<h4 class="text-center">
                                     "Il semble que la perfection soit atteinte non quand il n’y a plus
                                     rien à ajouter, mais quand il n’y a plus rien à retrancher."
-                                </h4>
+                                </h4>--}}
 
                                 <br/>
                                 <h6>STRATON SYSTEM</h6>
