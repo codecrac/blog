@@ -23,6 +23,7 @@
         <div class="card">
             <div class="card-header">
                 {!! Session::get('message','') !!}
+                <a href="{{route('gestion_evenement')}}" class="btn btn-outline-primary">Retour</a>
                 <h3> Modifier un evenement</h3>
             </div>
             <div class="card-body">
@@ -57,9 +58,11 @@
                             <textarea id="summernote" name="contenu">{!! $levenement['contenu'] !!}</textarea>
                         </div>
                     </div>
-                    @method('put')
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @if( Auth::user()->modifier =='true' )
+                        @method('put')
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @endif
                 </form>
             </div>
         </div>

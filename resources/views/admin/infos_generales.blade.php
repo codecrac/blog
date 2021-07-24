@@ -15,7 +15,7 @@
 
 
                             <h4>Organisation</h4>
-                            <input type="text" name="organisation" class="form-control" value="{{$infos_generales['organisation']}}">
+                            <input required type="text" name="organisation" class="form-control" value="{{$infos_generales['organisation']}}">
                             <br/>
 
                             <h4>Logo <img src="data:image/jpeg;base64,{{$infos_generales['logo']}}" height="100px" width="100px" /> </h4>
@@ -29,40 +29,50 @@
                             <br/>
 
                             <h4>Adresse</h4>
-                            <input type="text"  name="adresse" class="form-control" value="{{$infos_generales['adresse']}}">
+                            <input required type="text"  name="adresse" class="form-control" value="{{$infos_generales['adresse']}}">
 
                             <h4>Telephones</h4>
-                            <input type="text" name="telephones" class="form-control" value="{{$infos_generales['telephones']}}">
+                            <input required type="text" name="telephones" class="form-control" value="{{$infos_generales['telephones']}}">
 
                             <br/>
                             <h4>Email</h4>
-                            <input type="email" name="email" class="form-control" value="{{$infos_generales['email']}}">
+                            <input required type="email" name="email" class="form-control" value="{{$infos_generales['email']}}">
 
                             <br/>
                             <h4>A propos</h4>
-                            <textarea name="apropos" maxlength="250" class="form-control">{{$infos_generales['apropos']}}</textarea>
+                            <textarea required name="apropos" maxlength="250" class="form-control">{{$infos_generales['apropos']}}</textarea>
                             <br/>
 
                             <br/>
                             <h4>Lien page Facebook</h4>
-                            <input type="text" name="lien_fb" class="form-control" value="{{$infos_generales['lien_fb']}}">
+                            <input required type="text" name="lien_fb" class="form-control" value="{{$infos_generales['lien_fb']}}">
 
                             <br/>
                             <h4>Lien page linkedin</h4>
-                            <input type="text" name="lien_linkedin" class="form-control" value="{{$infos_generales['lien_linkedin']}}">
+                            <input  type="text" name="lien_linkedin" class="form-control" value="{{$infos_generales['lien_linkedin']}}">
 
                             <br/>
                             <h4>Lien page Instagram</h4>
-                            <input type="text" name="lien_insta" class="form-control" value="{{$infos_generales['lien_insta']}}">
+                            <input  type="text" name="lien_insta" class="form-control" value="{{$infos_generales['lien_insta']}}">
 
                             <br/>
                             <h4>Lien page twitter</h4>
-                            <input type="text" name="lien_twitter" class="form-control" value="{{$infos_generales['lien_twitter']}}">
+                            <input  type="text" name="lien_twitter" class="form-control" value="{{$infos_generales['lien_twitter']}}">
+
+                            <br/>
+                            <h4>Afficher les auteur article sur la page d'accueil</h4>
+                            <select required class="form-control" name="afficher_auteur_article">
+                                <option value="{{$infos_generales['afficher_auteur_article']}}">{{$infos_generales['afficher_auteur_article']}}</option>
+                                <option value="non">Non</option>
+                                <option value="oui">Oui</option>
+                            </select>
 
                             <div class="container text-center">
-                                @csrf
-                                <br/>
-                                <button class="btn btn-outline-dark" type="submit">Enregistrer</button>
+                                @if( Auth::user()->modifier =='true' )
+                                    @csrf
+                                    <br/>
+                                    <button class="btn btn-outline-dark" type="submit">Enregistrer</button>
+                                @endif
                             </div>
                         </form>
 

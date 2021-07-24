@@ -10,7 +10,9 @@
             <div class="card-body">
                 {!! Session::get('message','') !!}
                 <h2 class="card-title"> publicites </h2>
-                <a href="{{route('ajouter_publicite')}}" class="btn btn-primary">Nouvelle publicite</a>
+                @if( Auth::user()->ajouter =='true' )
+{{--                    <a href="{{route('ajouter_publicite')}}" class="btn btn-primary">Nouvelle publicite</a>--}}
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <table id="order-listing" class="table table-striped table-bordered">
@@ -24,13 +26,17 @@
                             <tbody>
                                 @foreach($liste_publicite_menu as $item_publicite)
                                 <tr>
-                                    <td><img src="data:image/jpeg;base64,{{$item_publicite['image']}}" width="100px" height="100px" /></td>
+                                    <td><img src="data:image/jpeg;base64,{{$item_publicite['image']}}" width="50px" height="50px" /></td>
                                     <td>{{$item_publicite['titre']}}</td>
                                     <td>
-                                        <a href="{{route('editer_publicite',[$item_publicite['id']])}}" class="btn btn-outline-primary">Editer</a>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_publicite['id']}}">
-                                            x
-                                        </button>
+                                        @if( Auth::user()->modifier =='true' )
+                                            <a href="{{route('editer_publicite',[$item_publicite['id']])}}" class="btn btn-outline-primary">Gerer</a>
+                                        @endif
+                                        @if( Auth::user()->effacer =='true' )
+                                            {{--<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_publicite['id']}}">
+                                                x
+                                            </button>--}}
+                                        @endif
                                     </td>
                                 </tr>
                                 <!-- Modal SUPPRIMER-->
@@ -42,9 +48,11 @@
                                                     <h3>Confirmez la suppression du menu <br/> <b>{{$item_publicite['titre']}}</b> ? </h3>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                    @if( Auth::user()->effacer =='true' )
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                    @endif
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                                                 </div>
                                             </form>

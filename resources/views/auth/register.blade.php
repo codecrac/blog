@@ -11,10 +11,13 @@
 @endsection
 
 @section('body')--}}
+
     <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+{{--            <x-jet-authentication-card-logo />--}}
+            <h2 class="text-center" style="font-size: 24px"> Ajouter un administrateur </h2>
+            <h2 class="text-center"> <a class="btn btn-primary" href="{{route('dashboard')}}"> Retour au tableau de bord </a> </h2>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -155,4 +158,5 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
 {{--@endsection--}}

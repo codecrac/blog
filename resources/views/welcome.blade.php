@@ -5,11 +5,60 @@
     <div class="main-content innerpagebg wf100">
         <!--News Large Page Start-->
 
+{{--====================EVENEMENTS ========================--}}
+
+        @if(sizeof($les_evenements)>0)
+
+            <div class="section-title mt-4">
+                <h2 > <span class="table-bordered p-3"> Evenements à Venir </span> </h2>
+            </div>
+        <div class="container">
+            <div class="row">
+                @foreach($les_evenements as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="ng-box">
+                        <div class="thumb">
+                            <a href="{{route('details_evenement',[$item['id']])}}">
+
+                                <img src="data:image/jpeg;base64,{{$item['image']}}" style="max-height: 280px;" alt="">
+
+                                <h6 style="text-align: center;position: absolute;bottom:0;width:100%;padding:10px;color: #fff;background-color:rgba(0,0,0,0.7)">
+                                    {{$item['titre']}}
+                                </h6>
+                            </a>
+                        </div>
+                        <div class="ng-txt">
+                            <div class="post-meta row">
+                             {{--   <div class="col-md-4">
+                                    <b> {{date('d-m-Y',strtotime($item['date_evenement']))}}</b>
+                                </div>--}}
+                                <div class="col-md-12 text-center">
+                                    <a target="_blank"
+                                       alt="{{date('Y-m-d',strtotime($item['date_evenement']))}}"
+                                       style="font-weight: bold;color:#222" href="https://logwork.com/countdown-qqqv" class="countdown-timer"
+                                       onclick="return false;" data-timezone="Africa/Lagos" data-language="fr" data-date="{{date('Y-m-d',strtotime($item['date_evenement']))}} 00:00">Bientot</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        </div>
+
+
+        <br/>
+            <div class="section-title">
+                <h2 > <span class="table-bordered p-3 text-capitalize">à la une </span> </h2>
+            </div>
+        @endif
+
+{{--====================FIN EVENEMENTS ========================--}}
+
         <!--Start-->
         <div class="news-large">
             <div class="container-fluid pt-4">
-
-                {{--                //Vitrine--}}
+                {{--====================4 derniers Articles ========================--}}
                 <div class="row">
                     <!--News Start-->
                     @if($dernier_article!=null)
@@ -18,9 +67,7 @@
                                 <!--Sticky Post Start-->
                                 <div class="news-large-post sticky">
                                     <div class="post-thumb">
-                                        <a href="{{route('lire_article',[$dernier_article['id']])}}">
-
-                                        </a>
+                                        <a href="{{route('lire_article',[$dernier_article['id']])}}"></a>
                                         <span>{{$dernier_article->categorie_parente->titre}}</span>
                                         <img src="data:image/jpeg;base64,{{$dernier_article['image']}}" alt="">
                                     </div>
@@ -31,11 +78,13 @@
                                             </a>
                                         </h4>
                                         <ul class="post-meta">
-                                            <li><i class="fas fa-calendar-alt"></i> {{date('d-m-Y',strtotime($dernier_article['updated_at']))}}
-                                            </li>
+                                            <li> <i class="fas fa-calendar-alt"></i> {{date('d-m-Y',strtotime($dernier_article['updated_at']))}} </li>
+                                            <li>  {{$infos_generales['afficher_auteur_article'] =='oui' ? '| '.$dernier_article->auteur->name : '' }}</li>
                                         </ul>
                                         <p> {{$dernier_article['extrait']}} </p>
-                                        <a href="#3" class="rm">Lire la suite</a>
+                                        <h3 class="text-center">
+                                            <a href="{{route('lire_article',[$dernier_article['id']])}}" style="color: #fff" class="rm">Lire la suite</a>
+                                        </h3>
                                     </div>
                                 </div>
                                 <!--Sticky Post End-->
@@ -61,6 +110,7 @@
                                                     <h4><a href="{{route('lire_article',[$item['id']])}}">{{$item['titre']}} </a></h4>
                                                     <ul class="post-meta">
                                                         <li style="color: #99a1b4"><i class="fas fa-calendar-alt"></i> {{date('d-m-Y',strtotime($item['updated_at']))}}  </li>
+                                                        <li> {{$infos_generales['afficher_auteur_article'] =='oui' ? '| '.$item->auteur->name : '' }}</li>
                                                     </ul>
                                                     <a href="{{route('lire_article',[$item['id']])}}" class="rm">Voir plus</a>
                                                 </div>
@@ -118,10 +168,9 @@
                     @endforeach--}}
                 </div>
 
-                {{--                Menu present sur accueil--}}
-                {{--                Menu present sur accueil--}}
-                {{--                Menu present sur accueil--}}
-                @foreach($menu_present_sur_accueil as $item_categorie_simple)
+{{--====================Articles Classé par categories ========================--}}
+
+            @foreach($menu_present_sur_accueil as $item_categorie_simple)
                     @if(sizeof($item_categorie_simple->articles) >0)
                         <br/><br/>
                         <div class="container">
@@ -157,6 +206,7 @@
                                                     </h4>--}}
                                                     <ul class="post-meta">
                                                         <li><i class="fas fa-calendar-alt"></i> {{date('d-m-Y',strtotime($item_articles['updated_at']))}}</li>
+                                                        <li> <li> {{$infos_generales['afficher_auteur_article'] =='oui' ? '| '.$item_articles->auteur->name : '' }}</li> </li>
                                                     </ul>
                                                     <p> {{$item_articles['extrait']}} </p>
                                                 </div>
@@ -177,6 +227,40 @@
             @endif
             @endforeach
 
+{{--=============================Publicite ======================================--}}
+
+                <div class="container-fluid">
+
+                    @if(sizeof($les_publicites) >0)
+                            <br/><br/>
+                            <div class="container">
+                                <div class="section-title">
+                                    <h2 > <span class="table-bordered p-3"> Qui pourrait vous interessés </span> </h2>
+                                </div>
+                                <div class="row">
+                                    @php $i=0 @endphp
+                                    @foreach($les_publicites as $item_publicite)
+
+                                        @if($i<3)
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="ng-box">
+                                                    <div class="thumb">
+                                                        <a href="{{$item_publicite['lien']}}">
+                                                            <img src="data:image/gif;base64,{{$item_publicite['image']}}" style="max-height: 250px" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @php $i++ @endphp
+                                        @else
+                                            @break
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                </div>
         </div>
     </div>
     <!--End-->

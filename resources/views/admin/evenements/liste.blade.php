@@ -10,7 +10,9 @@
             <div class="card-body">
                 {!! Session::get('message','') !!}
                 <h2 class="card-title"> Evenements </h2>
-                <a href="{{route('ajouter_evenement')}}" class="btn btn-primary">Nouvel evenement</a>
+                @if( Auth::user()->ajouter =='true' )
+                    <a href="{{route('ajouter_evenement')}}" class="btn btn-primary">Nouvel evenement</a>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <table id="order-listing" class="table table-striped table-bordered">
@@ -24,13 +26,18 @@
                             <tbody>
                                 @foreach($liste_evenement_menu as $item_evenement)
                                 <tr>
-                                    <td><img src="data:image/jpeg;base64,{{$item_evenement['image']}}" width="100px" height="100px" /></td>
+                                    <td><img src="data:image/jpeg;base64,{{$item_evenement['image']}}" width="50px" height="50px" /></td>
                                     <td>{{$item_evenement['titre']}}</td>
                                     <td>
-                                        <a href="{{route('editer_evenement',[$item_evenement['id']])}}" class="btn btn-outline-primary">Editer</a>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_evenement['id']}}">
-                                            x
-                                        </button>
+                                        @if( Auth::user()->modifier =='true' )
+                                            <a href="{{route('editer_evenement',[$item_evenement['id']])}}" class="btn btn-outline-primary">Editer</a>
+                                        @endif
+
+                                        @if( Auth::user()->effacer =='true' )
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_evenement['id']}}">
+                                                x
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                                 <!-- Modal SUPPRIMER-->

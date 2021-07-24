@@ -23,6 +23,8 @@
             width: 25px !important;
         }
     </style>
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+
 </head>
 <body>
 <button type="button" class="mobile-nav-toggle d-lg-none mr-1"> <img src="{{asset('images_statique/menu.png')}}" width="50px" /> </button>
@@ -76,9 +78,9 @@
                     <div class="col-md-11 col-sm-7">
                         <nav class="main-nav">
                             <ul>
-                                {{--<li class="nav-item drop-down">
+                                <li class="nav-item drop-down">
                                     <a href="{{route('accueil')}}">Accueil</a>
-                                </li>--}}
+                                </li>
                                 @foreach($menus_pricipaux as $item_menu_pricipal)
                                     @if($item_menu_pricipal->type == 'menu_simple')
                                         <li class="nav-item drop-down">
@@ -91,9 +93,9 @@
                                                 <a href="#">{{$item_menu_pricipal['titre']}} <b>&triangledown;</b></a>
                                                 <ul>
                                                     @foreach($item_menu_pricipal->enfants as $item_sous_menu)
-                                                                <li>
-                                                                    <a href="{{route('page_article',[$item_sous_menu['id']])}}"> {{$item_sous_menu['titre']}} </a>
-                                                                </li>
+                                                        <li>
+                                                            <a href="{{route('page_article',[$item_sous_menu['id']])}}"> {{$item_sous_menu['titre']}} </a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -123,7 +125,34 @@
                 left: 0;
                 right: 0;
                 bottom: 0
-                "></div>
+                ">
+            <form method="get" action="{{route('resultat_recherche')}}" style="position: absolute;bottom: 0px;left: 10px">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input class="form-control" name="mot_cle" style="background-color: #fff" required>
+                    </div>
+                    <div class="col-md-2">
+                    <button class="btn btn-warning"> Rechercher </button>
+                    </div>
+        </div>
+            </form>
+            {{--<div class="gt-breadcrumbs">
+                <ul>
+                    <form method="get" action="{{route('resultat_recherche')}}">
+                        <li>
+
+                        </li>
+                        <li>
+                            <input class="form-control" name="mot_cle" required>
+                            <button class="btn btn-warning"> Rechercher </button>
+                        </li>
+                        <li>
+                        </li>
+                    </form>
+
+                </ul>
+            </div>--}}
+        </div>
     </div>
         @yield('body')
 
@@ -140,7 +169,7 @@
                     </div>
                     <ul class="topsocial">
                         @if($infos_generales['lien_fb'])
-                            <li><a href="{{$infos_generales['lien_fb']}}" class="fb"> <img src="{{asset('images_statique/fb.jpg')}}"> </a></li>
+                            <li><a href="{{$infos_generales['lien_fb']}}" class="fb"> <img src="{{asset('images_statique/fb.png')}}"> </a></li>
                         @endif
                         @if($infos_generales['lien_linkedin'])
                             <li><a href="{{$infos_generales['lien_linkedin']}}" class="fb"> <img src="{{asset('images_statique/linkedin.png')}}"> </a></li>
@@ -208,9 +237,9 @@
 <script src="{{asset('front_template/mobile-nav.js')}}"></script>
 
 <nav class="mobile-nav d-lg-none">
-    {{--<li class="nav-item ">
+    <li class="nav-item ">
         <a href="{{route('accueil')}}">Accueil</a>
-    </li>--}}
+    </li>
     @foreach($menus_pricipaux as $item_menu_pricipal)
         @if($item_menu_pricipal->type == 'menu_simple')
             <li class="nav-item ">
@@ -221,13 +250,13 @@
             @if(sizeof($item_menu_pricipal->enfants) >0)
                 <li class="nav-item drop-down">
                     <a href="#">{{$item_menu_pricipal['titre']}} <b>&triangledown;</b></a>
+                    <ul>
                     @foreach($item_menu_pricipal->enfants as $item_sous_menu)
-                        <ul>
                             <li>
                                 <a href="{{route('page_article',[$item_sous_menu['id']])}}"> {{$item_sous_menu['titre']}} </a>
                             </li>
-                        </ul>
                     @endforeach
+                    </ul>
                 </li>
             @endif
         @endif
@@ -241,6 +270,7 @@
 <script src="{{asset('front_template/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('front_template/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('front_template/custom.js')}}"></script>
+
 
 </body>
 </html>

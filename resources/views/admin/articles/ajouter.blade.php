@@ -19,6 +19,7 @@
         <div class="card">
             <div class="card-header">
                 {!! Session::get('message','') !!}
+                <a href="{{route('gestion_article',[$le_menu->id])}}" class="btn btn-outline-primary">Retour</a>
                 <h3> Nouvel article dans : {{$le_menu->parent['titre']}}/{{$le_menu['titre']}} </h3>
             </div>
             <div class="card-body">
@@ -52,6 +53,7 @@
                             <div class="row">
                                 <h4>Auteur</h4>
                                 <select class="form-control" name="auteur">
+                                    <option value="{{Auth::user()->id}}"> {{Auth::user()->name}} </option>
                                     @foreach($liste_utilisateur as $item)
                                         <option value="{{$item['id']}}"> {{$item['name']}} </option>
                                     @endforeach
@@ -64,8 +66,10 @@
                             <textarea id="summernote" name="contenu" required></textarea>
                         </div>
                     </div>
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @if( Auth::user()->ajouter =='true' )
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @endif
                 </form>
             </div>
         </div>

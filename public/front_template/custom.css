@@ -5128,6 +5128,7 @@ ul.post-meta li i {
 	z-index: 99;
 	opacity: 0;
 }
+
 .video-thumb:before, .video-thumb:after, .post-thumb:before, .post-thumb:after {
 	position: absolute;
 	left: 0;

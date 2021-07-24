@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->longText('image');
             $table->string('extrait');
             $table->longText('contenu');
+            $table->longText('nb_vue')->default('0');
             $table->timestamps();
         });
     }

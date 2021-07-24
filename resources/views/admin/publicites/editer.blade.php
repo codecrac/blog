@@ -23,6 +23,8 @@
         <div class="card">
             <div class="card-header">
                 {!! Session::get('message','') !!}
+                <a href="{{route('gestion_publicite')}}" class="btn btn-outline-primary">Retour</a>
+
                 <h3> Modifier un publicite</h3>
             </div>
             <div class="card-body">
@@ -52,9 +54,11 @@
                         </div>
 
                     </div>
-                    @method('put')
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @if( Auth::user()->modifier =='true' )
+                        @method('put')
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @endif
                 </form>
             </div>
         </div>

@@ -52,6 +52,7 @@ class InfoGeneraleController extends Controller
         $infosgenerales->lien_linkedin = $df['lien_linkedin'];
         $infosgenerales->lien_insta = $df['lien_insta'];
         $infosgenerales->lien_twitter = $df['lien_twitter'];
+        $infosgenerales->afficher_auteur_article = $df['afficher_auteur_article'];
 
         if($infosgenerales->save()){
             $message = "<div class='alert alert-success text-center'> Les modifications ont bien été enregistrés </div>";

@@ -10,7 +10,11 @@
             <div class="card-body">
                 {!! Session::get('message','') !!}
                 <h2 class="card-title"> {{$le_menu['titre']}} </h2>
-                <a href="{{route('ajouter_article',[$le_menu['id']])}}" class="btn btn-primary">Nouvel article</a>
+
+                @if( Auth::user()->ajouter =='true' )
+                    <a href="{{route('ajouter_article',[$le_menu['id']])}}" class="btn btn-primary">Nouvel article</a>
+                @endif
+
                 <div class="row">
                     <div class="col-12">
                         <table id="order-listing" class="table table-striped table-bordered">
@@ -18,19 +22,27 @@
                             <tr>
                                 <th>Image</th>
                                 <th>Titre</th>
+                                <th>Visite</th>
+                                <th>Auteur</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($liste_article_menu as $item_article)
                                 <tr>
-                                    <td><img src="data:image/jpeg;base64,{{$item_article['image']}}" width="100px" height="100px" /></td>
+                                    <td><img src="data:image/jpeg;base64,{{$item_article['image']}}" width="50px" height="50px" /></td>
                                     <td>{{$item_article['titre']}}</td>
+                                    <td> <i class="mdi mdi-eye"></i>  {{$item_article['nb_vue']}} </td>
+                                    <td>{{$item_article->auteur->name}}</td>
                                     <td>
-                                        <a href="{{route('editer_article',[$item_article['id']])}}" class="btn btn-outline-primary">Editer</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprimer-menu-{{$item_article['id']}}">
-                                            x
-                                        </button>
+                                        @if( Auth::user()->modifier =='true' )
+                                            <a href="{{route('editer_article',[$item_article['id']])}}" class="btn btn-outline-primary">Editer</a>
+                                        @endif
+                                        @if( Auth::user()->effacer =='true' )
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprimer-menu-{{$item_article['id']}}">
+                                                x
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                                 <!-- Modal SUPPRIMER-->

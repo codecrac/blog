@@ -26,6 +26,7 @@ class CreateInfosgeneralesTable extends Migration
             $table->string('lien_twitter')->nullable();
             $table->string('lien_insta')->nullable();
             $table->string('lien_linkedin')->nullable();
+            $table->enum('afficher_auteur_article',['oui','non']);
         });
     }
 

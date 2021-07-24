@@ -23,6 +23,7 @@
         <div class="card">
             <div class="card-header">
                 {!! Session::get('message','') !!}
+                <a href="{{route('gestion_article',[$larticle->categorie_parente->id])}}" class="btn btn-outline-primary">Retour</a>
                 <h3> Modifier un article</h3>
             </div>
             <div class="card-body">
@@ -68,9 +69,11 @@
                             <textarea id="summernoteExample" name="contenu">{!! $larticle['contenu'] !!}</textarea>
                         </div>
                     </div>
-                    @method('put')
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @if( Auth::user()->modifier =='true' )
+                        @method('put')
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    @endif
                 </form>
             </div>
         </div>

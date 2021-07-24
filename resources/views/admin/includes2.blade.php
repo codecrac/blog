@@ -81,7 +81,8 @@
                     </a>
                 </li>
 
-                <li class="side-nav-item">
+                @if( Auth::user()->articles =='true' )
+                    <li class="side-nav-item">
                     <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
                         <i class="uil-copy-alt"></i>
                         <span> Pages </span>
@@ -98,20 +99,25 @@
                         </ul>
                     </div>
                 </li>
+                @endif
 
-                <li class="side-nav-item">
-                    <a href="{{route('gestion_publicite')}}" class="side-nav-link">
-                        <i class="uil-cell"></i>
-                        <span> Publicite </span>
-                    </a>
-                </li>
+                @if( Auth::user()->publicite =='true' )
+                    <li class="side-nav-item">
+                        <a href="{{route('gestion_publicite')}}" class="side-nav-link">
+                            <i class="uil-cell"></i>
+                            <span> Publicite </span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="side-nav-item">
-                    <a href="{{route('gestion_evenement')}}" class="side-nav-link">
-                        <i class="uil-calendar-alt"></i>
-                        <span> Evenement </span>
-                    </a>
-                </li>
+                @if( Auth::user()->evenement =='true' )
+                    <li class="side-nav-item">
+                        <a href="{{route('gestion_evenement')}}" class="side-nav-link">
+                            <i class="uil-calendar-alt"></i>
+                            <span> Evenement </span>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="side-nav-item">
                     <a href="{{route('gestion_page_accueil')}}" class="side-nav-link">

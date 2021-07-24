@@ -38,8 +38,11 @@
                                 </div>
 
                             @endforeach
-                            @csrf
-                            <button class="btn btn-outline-dark" type="submit">Enregistrer les modifications</button>
+
+                            @if( Auth::user()->modifier =='true' )
+                                @csrf
+                                <button class="btn btn-outline-dark" type="submit">Enregistrer les modifications</button>
+                            @endif
                         </form>
 
                     </div>

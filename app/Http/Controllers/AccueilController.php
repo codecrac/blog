@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Evenement;
 use App\Models\InfosGenerale;
 use App\Models\Menu;
+use App\Models\Publicite;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AccueilController extends Controller
@@ -29,8 +32,12 @@ class AccueilController extends Controller
         $menu_present_sur_accueil = Menu::where('type','=','menu_simple')->where('present_sur_accueil','=',true)->get();
 //        dd($menu_present_sur_accueil);
 
+        $today = date('d-m-Y');
+        $les_evenements = Evenement::where('date_evenement','>=',$today)->whereDate('date_evenement','>=', Carbon::today())->orderBy('date_evenement','asc')->get();
+
 //        dd($menus_pricipaux);
-        return view('welcome',compact('infos_generales','menus_pricipaux',
-            'dernier_article','cinq_au_hasard','menu_present_sur_accueil','quatre_derniers_article'));
+        $les_publicites = Publicite::all();
+        return view('welcome',compact('infos_generales','menus_pricipaux','les_evenements',
+            'dernier_article','cinq_au_hasard','menu_present_sur_accueil','quatre_derniers_article','les_publicites'));
     }
 }

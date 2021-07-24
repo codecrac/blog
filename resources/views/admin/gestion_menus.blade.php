@@ -89,10 +89,13 @@
 
                             <br/>
                              <input required type="hidden" value name="id_parent">
-                            <h3 class="text-center">
-                                @csrf
-                                <button class="btn btn-success" type="submit">Enregistrer</button>
-                            </h3>
+
+                            @if( Auth::user()->ajouter =='true' )
+                                <h3 class="text-center">
+                                    @csrf
+                                    <button class="btn btn-success" type="submit">Enregistrer</button>
+                                </h3>
+                            @endif
                         </form>
 
                     </div>
@@ -116,12 +119,17 @@
                                     <td>
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_menus['id']}}">
-                                            Editer
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_menus['id']}}">
-                                            x
-                                        </button>
+                                        @if( Auth::user()->modifier =='true' )
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_menus['id']}}">
+                                                Editer
+                                            </button>
+                                        @endif
+
+                                        @if( Auth::user()->effacer =='true' )
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_menus['id']}}">
+                                                x
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -140,10 +148,12 @@
                                                      <input required class="form-control" type="text" name="titre_menu" value="{{$item_menus['titre']}}">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    @method('put')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-primary">Modifier</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                    @if( Auth::user()->modifier =='true' )
+                                                        @method('put')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Modifier</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
@@ -241,10 +251,13 @@
                                 </tfoot>
                             </table>
                             <br/>
-                            @csrf
-                            <h3 class="text-center">
-                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                            </h3>
+
+                            @if( Auth::user()->ajouter =='true' )
+                                @csrf
+                                <h3 class="text-center">
+                                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                                </h3>
+                            @endif
                         </form>
 
                     </div>
@@ -272,12 +285,17 @@
                                                 <tr>
                                                     <td class="col-6"> {{$item_sous_menu['titre']}} </td>
                                                     <td class="col-6">
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_sous_menu['id']}}">
-                                                            Editer
-                                                        </button>
-                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_sous_menu['id']}}">
-                                                            x
-                                                        </button>
+                                                        @if( Auth::user()->modifier =='true' )
+                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editer-menu-{{$item_sous_menu['id']}}">
+                                                                Editer
+                                                            </button>
+                                                        @endif
+
+                                                        @if( Auth::user()->effacer =='true' )
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimer-menu-{{$item_sous_menu['id']}}">
+                                                                x
+                                                            </button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -300,10 +318,12 @@
                                                                 <input required class="form-control" type="text" name="titre_menu" value="{{$item_sous_menu['titre']}}">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                @method('put')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-primary">Modifier</button>
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                                @if( Auth::user()->modifier =='true' )
+                                                                    @method('put')
+                                                                    @csrf
+                                                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </form>

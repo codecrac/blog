@@ -6,13 +6,14 @@ use App\Models\InfosGenerale;
 use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UtilisateurController extends Controller
 {
     public function index(){
         $liste_menus_simple = Menu::where('type','=','menu_simple')->get();
         $infos_generales = InfosGenerale::first();
-        $liste_utilisateur = User::all();
+        $liste_utilisateur = User::all()->except(Auth::user()->id);
         return view('admin.gestion_utilisateur',compact('liste_menus_simple','infos_generales','liste_utilisateur'));
     }
 

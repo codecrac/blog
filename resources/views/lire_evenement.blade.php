@@ -4,16 +4,15 @@
 
    <div class="main-content innerpagebg wf100 p80">
 
-{{--===============================Espace publicitaire==============================--}}
-    <div class="container text-center mb-4">
-        <a href="{{$pub_1['lien']}}">
-            <img src="data:image/gif;base64,{{$pub_1['image']}}" style="max-height: 250px">
-        </a>
-    </div>
-{{--==============================FIN Espace publicitaire=====================================--}}
+       {{--===============================Espace publicitaire==============================--}}
+       <div class="container text-center mb-4">
+           <a href="{{$pub_1['lien']}}">
+               <img src="data:image/gif;base64,{{$pub_1['image']}}" style="max-height: 250px">
+           </a>
+       </div>
+   {{--==============================FIN Espace publicitaire=====================================--}}
 
-       <!--News Large Page Start-->
-       <!--Start-->
+   <!--Start-->
        <div class="news-details">
            <div class="container">
                <div class="row">
@@ -22,21 +21,22 @@
                        <div class="news-details-wrap">
                            <div class="news-large-post">
                                <div class="post-thumb">
-                                   <img src="data:image/jpeg;base64,{{$larticle['image']}}" alt="">
+                                   <img src="data:image/jpeg;base64,{{$levenement['image']}}" alt="">
 
                                    <h3 style="position: absolute;bottom:0;width:100%;padding:10px;color: #fff;background-color:rgba(0,0,0,0.7)">
-                                       {{$larticle['titre']}}
+                                       {{$levenement['titre']}}
                                    </h3>
                                </div>
                                <div class="post-txt">
-{{--                                   <h3>{{$larticle['titre']}}</h3>--}}
-                                   <div class="control-group">
-                                       <h3> {{$larticle['titre']}} </h3>
+{{--                                   <h3>{{$levenement['titre']}}</h3>--}}
+                                   <div class="container">
+                                       <h3> Date : {{date('d-m-Y',strtotime($levenement['date_evenement']))}} </h3>
+                                       <a target="_blank" style="font-size: 40px" href="https://logwork.com/countdown-qqqv" class="countdown-timer"
+                                          onclick="return false;" data-timezone="Africa/Lagos" data-language="fr"
+                                          data-date="{{date('Y-m-d',strtotime($levenement['date_evenement']))}} 18:15">Commence dans</a>
                                    </div>
 
-                                   {!! $larticle['contenu'] !!}
-
-                                   <h6>  {{$infos_generales['afficher_auteur_article'] =='oui' ? 'Auteur : '.$larticle->auteur->name : '' }}</h6>
+                                   {!! $levenement['contenu'] !!}
                                </div>
                            </div>
                        </div>
@@ -47,7 +47,7 @@
                        <div class="sidebar">
                            <h4 style="background-color: orange;color: white;padding: 5px;text-align: center">Recommandations</h4>
 
-                           <div class="col-12 mt-1>
+                           <div class="col-12">
                                <div class="ng-box">
                                    <div class="thumb">
                                        <a href="{{$pub_2['lien']}}">
@@ -58,13 +58,13 @@
                                </div>
                            </div>
 
-                           @foreach($cinq_au_hasard as $item_au_hasard)
+                       @foreach($cinq_au_hasard as $item_au_hasard)
                                <div class="col-12">
                                    <div class="ng-box">
                                        <div class="thumb">
                                            <a href="{{route('lire_article',[$item_au_hasard['id']])}}">
-                                               <img src="data:image/jpeg;base64,{{$item_au_hasard['image']}}"
-                                                    style="max-height: 200px" alt="">
+                                            <img src="data:image/jpeg;base64,{{$item_au_hasard['image']}}"
+                                                style="max-height: 200px" alt="">
                                            </a>
                                        </div>
                                        <div class="ng-txt">
@@ -74,7 +74,10 @@
                                                  <li><i class="fas fa-calendar-alt"></i> {{$item_au_hasard['updated_at']}}</li>
                                              </ul>--}}
                                            {{--                                                    <p> {{$item_au_hasard['extrait']}} </p>--}}
-                                           {{--                                                    <a href="#" class="rm">En savoir plus </a>--}}
+                                           <br/>
+                                           <h3 class="text-center">
+                                            <a href="#" class="rm mt-2">En savoir plus </a>
+                                           </h3>
                                        </div>
                                    </div>
                                </div>
@@ -87,11 +90,11 @@
        </div>
        <!--End-->
    </div>
-
     <div class="container">
-        <h4 > <span class="table-bordered p-4"> De la meme categorie </span></h4>
+        <h4 > <span class="table-bordered p-4"> Autres evenements </span></h4>
         <br/>
         <div class="row">
+
             <div class="col-md-4">
                 <div class="ng-box">
                     <div class="thumb">
@@ -102,17 +105,16 @@
                     </div>
                 </div>
             </div>
-            @foreach($trois_de_la_meme_categorie as $item_de_la_meme_categorie)
+            @foreach($trois_evenement as $item)
                 <div class="col-md-4">
                     <div class="ng-box">
                         <div class="thumb">
-                            <a href="{{$item_de_la_meme_categorie['lien']}}">
-                                <img src="data:image/jpeg;base64,{{$item_de_la_meme_categorie['image']}}"
+                            <a href="#"><i class="fas fa-link"></i></a>
+                            <img src="data:image/jpeg;base64,{{$item['image']}}"
                                  style="max-height: 200px" alt="">
-                            </a>
                         </div>
                         <div class="ng-txt">
-                            <h5><a href="{{route('lire_article',[$item_de_la_meme_categorie['id']])}}" style="color: #222">{{$item_de_la_meme_categorie['titre']}}</a>
+                            <h5><a href="{{route('details_evenement',[$item['id']])}}" style="color: #222">{{$item['titre']}}</a>
                             </h5>
                         </div>
                     </div>
